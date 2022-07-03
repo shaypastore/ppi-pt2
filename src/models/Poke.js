@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-//const mongoosePaginate = require("mongoose-paginate");
 
 const PokeSchema = new mongoose.Schema({
   name: {
@@ -23,5 +22,4 @@ const PokeSchema = new mongoose.Schema({
     default: Date.now,
   },
 });
-//PokeSchema.plugin(mongoosePaginate);
 mongoose.model('Pokemon', PokeSchema);
