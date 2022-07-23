@@ -15,5 +15,7 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.19"
-  }
+  },
+  "repository": "https://github.com/shaypastore/ppi-pt2.git",
+  "author": "Shaiane Pastore <shaypastore@hotmail.com>"
 }
