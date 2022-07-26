@@ -1,25 +1,31 @@
 const jwt = require("jsonwebtoken");
+const mysql = require('mysql2');
 const accessTokenSecret = "youraccesstokensecret";
 
-const users = [
-    {
-      username: "john",
-      password: "password123admin",
-      role: "admin",
-    },
-    {
-      username: "anna",
-      password: "password123member",
-      role: "member",
-    },
-  ];
+const con = mysql.createConnection({
+  host: "localhost",
+  database: "sitepoint",
+  user: "root",
+  password: "asdf000",
+});
 
 
 module.exports = {
+  // Vai retornar todos os usuarios de nosso banco de dados
+  async selectUsuarios() {
+    con.query("SELECT * FROM usuarios", (err, results) => {
+      if (err) throw err;
+      console.log(results);
+      return results;
+    });
+  },
 
   async login(req, res) {
     // Lê o nome de usuário e a senha no corpo da requisição
     const { username, password } = req.body;
+
+    const users = selectUsuarios();
+
     // Filtra o usuário(user) do array de usuários(users) por nome de usuário     e senha
     const user = users.find((u) => {
       return u.username === username && u.password === password;
